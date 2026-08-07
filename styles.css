@@ -346,12 +346,73 @@ body {
 
 
 /* ==========================================================================
-   10. RESPONSIVE ADJUSTMENTS
+   10. RESPONSIVE – Fit everything on one screen (no scroll)
    ========================================================================== */
 
-@media (max-width: 380px) {
-  .event-name    { font-size: 32px; }
-  .event-tagline { font-size: 24px; }
-  .card-content  { padding: 20px 16px 16px; }
-  .rsvp-buttons  { flex-direction: column; }
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+    height: 100dvh;          /* modern mobile viewport height */
+    overflow: hidden;        /* prevent any scrolling */
+  }
+
+  .invite-card {
+    max-width: 100%;
+    max-height: calc(100dvh - 16px);
+    overflow: hidden;
+  }
+
+  .card-content {
+    padding: 16px 14px 14px;
+  }
+
+  .photo-frame {
+    aspect-ratio: 16 / 6;    /* shorter photo area */
+    margin-bottom: 10px;
+  }
+
+  .event-name {
+    font-size: 30px;
+    margin-bottom: 4px;
+  }
+
+  .event-detail {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .event-tagline {
+    font-size: 22px;
+    margin: 8px 0 2px;
+  }
+
+  .event-tagline__sub {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+  }
+
+  .invite-message {
+    font-size: 12px;
+    margin: 8px 0 12px;
+    line-height: 1.35;
+  }
+
+  .rsvp-name {
+    margin-bottom: 10px;
+  }
+
+  .rsvp-name__input {
+    padding: 7px 10px;
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+
+  .rsvp-status {
+    font-size: 12px;
+    min-height: 16px;
+  }
 }
