@@ -7,7 +7,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
    designed for.
    ========================================================================== */
 
-const SUPABASE_URL = "https://bfbogsrgwzvlubnoglwn.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://bfbogsrgwzvlubnoglwn.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJmYm9nc3Jnd3p2bHVibm9nbHduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwNzczMDksImV4cCI6MjEwMTY1MzMwOX0.fyokAljl9tBqxjCaP0rEclzD4A-lnSKOoPgDXBeYM1I";
 
 const SPARKLE_COUNT = 45;          // how many sparkles to scatter
