@@ -1,0 +1,357 @@
+/* ==========================================================================
+   1. RESET & BASE
+   Basic resets so every browser renders the invite the same way.
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  color: #f3ead9;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  position: relative;
+  overflow-x: hidden;
+
+  /* Page sits behind the card in a deep denim gradient */
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,0.05), transparent 40%),
+    linear-gradient(160deg, #16233c 0%, #101a2e 45%, #0a1120 100%);
+}
+
+
+/* ==========================================================================
+   2. DENIM TEXTURE
+   Repeating diagonal stripes give the background a woven-fabric feel.
+   ========================================================================== */
+
+.invite-card {
+  background:
+    /* subtle diagonal weave lines */
+    repeating-linear-gradient(
+      115deg,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    /* soft fabric shading, lighter top-left to darker bottom-right */
+    linear-gradient(135deg, #2b3f60 0%, #1c2c48 35%, #16223a 65%, #0e1728 100%);
+}
+
+
+/* ==========================================================================
+   3. SPARKLE EFFECTS
+   Twinkling dots layered above the denim background (positions/timing
+   are generated in script.js, styling lives here).
+   ========================================================================== */
+
+.sparkle-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sparkle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.9);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.sparkle--star {
+  /* A handful of sparkles render as 4-point stars instead of dots */
+  width: 10px;
+  height: 10px;
+  background: transparent;
+  box-shadow: none;
+  clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+  background: radial-gradient(circle, #fff 0%, #d9c9a3 60%, transparent 80%);
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.8); }
+  50%      { opacity: 1;    transform: scale(1.15); }
+}
+
+
+/* ==========================================================================
+   4. INVITATION CARD / GOLD FRAME
+   The main card container, plus the ornate gold border around it.
+   ========================================================================== */
+
+.invite-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 4px;
+  padding: 3px;
+  z-index: 1;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.55);
+
+  /* Gold outer edge */
+  border: 1px solid #c9a466;
+}
+
+.card-content {
+  position: relative;
+  padding: 36px 22px 20px;
+  text-align: center;
+
+  /* Inner gold hairline frame, inset from the card edge */
+  border: 1px solid rgba(201, 164, 102, 0.55);
+  outline: 6px solid transparent;
+  outline-offset: -14px;
+  box-shadow: inset 0 0 0 1px rgba(201, 164, 102, 0.25);
+}
+
+/* Sparkling corner accents on the frame — position:absolute is what pins
+   these to the corners; without it they sit in the normal text flow and
+   end up centered at the top/bottom instead. */
+.card-content::before,
+.card-content::after {
+  content: "\2726";
+  position: absolute;
+  color: #e9d4a3;
+  font-size: 14px;
+  line-height: 1;
+  opacity: 0.85;
+}
+.card-content::before { top: 14px; right: 14px; }
+.card-content::after   { bottom: 14px; left: 14px; }
+
+
+/* ==========================================================================
+   5. PHOTO FRAME PLACEHOLDER
+   A light box with a gold border, mirroring the strip's photo slots.
+   ========================================================================== */
+
+.photo-frame {
+  width: 100%;
+  aspect-ratio: 16 / 7;
+  background: #f4f1ea;
+  border: 3px solid #c9a466;
+  box-shadow: 0 0 0 1px rgba(201, 164, 102, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.photo-frame__hint {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #a7a196;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+}
+
+
+/* ==========================================================================
+   6. TYPOGRAPHY
+   Script name, small-caps details, and the bold tagline.
+   ========================================================================== */
+
+.event-name {
+  font-family: 'Alex Brush', cursive;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1;
+  color: #e9d4a3;
+  text-shadow: 0 0 12px rgba(233, 212, 163, 0.35);
+  margin-bottom: 8px;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.divider__line {
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a466, transparent);
+}
+
+.divider__heart {
+  color: #cacaca;
+  font-size: 12px;
+}
+
+.event-detail {
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e3d8c0;
+  margin-bottom: 3px;
+}
+
+.event-tagline {
+  font-family: 'Alex Brush', cursive;
+  font-size: 28px;
+  color: #e9d4a3;
+  margin: 12px 0 2px;
+  line-height: 1;
+}
+
+.event-tagline__sub {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #f3ead9;
+  margin-top: 4px;
+}
+
+.invite-message {
+  font-size: 14px;
+  font-style: italic;
+  line-height: 1.45;
+  color: #d8cdb6;
+  margin: 12px 0 16px;
+}
+
+
+/* ==========================================================================
+   7. GUEST NAME FIELD
+   Where the guest types their name before responding, so you know who
+   accepted or declined.
+   ========================================================================== */
+
+.rsvp-name {
+  text-align: left;
+  margin-bottom: 12px;
+}
+
+.rsvp-name__label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #cbbfa0;
+  margin-bottom: 5px;
+}
+
+.rsvp-name__input {
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  color: #f3ead9;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 164, 102, 0.5);
+  border-radius: 2px;
+  padding: 8px 10px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.rsvp-name__input::placeholder {
+  color: rgba(243, 234, 217, 0.4);
+}
+
+.rsvp-name__input:focus {
+  outline: none;
+  border-color: #e9d4a3;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.rsvp-name__input.is-invalid {
+  border-color: #e3a7a7;
+}
+
+
+/* ==========================================================================
+   8. RSVP BUTTONS
+   Accept / Decline actions styled to match the gold-on-denim palette.
+   ========================================================================== */
+
+.rsvp-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+.btn {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 9px 22px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-accept {
+  background: linear-gradient(180deg, #d9b878, #b8934f);
+  color: #1c2c48;
+  border: 1px solid #e9d4a3;
+}
+
+.btn-accept:hover {
+  background: linear-gradient(180deg, #e9d4a3, #c9a466);
+}
+
+.btn-decline {
+  background: transparent;
+  color: #e3d8c0;
+  border: 1px solid rgba(227, 216, 192, 0.5);
+}
+
+.btn-decline:hover {
+  border-color: #e3d8c0;
+  color: #ffffff;
+}
+
+
+/* ==========================================================================
+   9. RSVP STATUS MESSAGE
+   Feedback text shown once a guest has responded.
+   ========================================================================== */
+
+.rsvp-status {
+  margin-top: 10px;
+  font-size: 13px;
+  font-style: italic;
+  min-height: 18px;
+  color: #a7e3c4;
+}
+
+.rsvp-status.is-declined {
+  color: #e3a7a7;
+}
+
+
+/* ==========================================================================
+   10. RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 380px) {
+  .event-name    { font-size: 32px; }
+  .event-tagline { font-size: 24px; }
+  .card-content  { padding: 20px 16px 16px; }
+  .rsvp-buttons  { flex-direction: column; }
+}

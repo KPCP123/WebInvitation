@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Montessa's Five Decades — You're Invited</title>
+
+  <!-- Google Fonts: script font for the name, serif for everything else -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Sparkles are injected here by script.js -->
+  <div class="sparkle-layer" id="sparkleLayer"></div>
+
+  <main class="invite-card">
+
+    <!-- Folded denim corner, top-left, like a jean pocket flap -->
+    <div class="denim-corner"></div>
+
+    <!-- Metal rivets, like jean buttons -->
+    <div class="rivet rivet-top"></div>
+    <div class="rivet rivet-bottom"></div>
+
+    <div class="card-content">
+
+      <!-- Gold-framed photo placeholder -->
+      <div class="photo-frame">
+        <span class="photo-frame__hint">Add a photo</span>
+      </div>
+
+      <!-- Name in gold script -->
+      <h1 class="event-name">Montessa</h1>
+
+      <!-- Divider with heart -->
+      <div class="divider">
+        <span class="divider__line"></span>
+        <span class="divider__heart">&#10084;</span>
+        <span class="divider__line"></span>
+      </div>
+
+      <!-- Date & venue, small caps, letter-spaced -->
+      <p class="event-detail">September 12, 2026</p>
+      <p class="event-detail">Le Don's Garden</p>
+
+      <!-- Tagline -->
+      <p class="event-tagline">Five<span class="event-tagline__sub">Decades</span></p>
+
+      <!-- Invite message -->
+      <p class="invite-message">
+        Denim, sparkle, and fifty years worth celebrating.
+        Please join us for an evening of music, laughter, and love.
+      </p>
+
+      <!-- Guest types their name so we know who responded -->
+      <div class="rsvp-name">
+        <label for="guestName" class="rsvp-name__label">Your name</label>
+        <input type="text" id="guestName" class="rsvp-name__input" placeholder="e.g. Kiel Pakingan" autocomplete="name" />
+      </div>
+
+      <!-- RSVP buttons -->
+      <div class="rsvp-buttons">
+        <button type="button" id="acceptBtn" class="btn btn-accept">Accept</button>
+        <button type="button" id="declineBtn" class="btn btn-decline">Decline</button>
+      </div>
+
+      <!-- Feedback shown after a choice is made -->
+      <p class="rsvp-status" id="rsvpStatus" aria-live="polite"></p>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
